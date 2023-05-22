@@ -81,6 +81,9 @@
 
 <!-- JSON Feed -->
 {{ with .OutputFormats.Get "json" }}
+  {{$post_title := $.Site.Title}}
+  {{$post_title := split $post_title "}}" }}
+  {{$post_title := index $post_title (sub (len $post_title) 1)}}
   <link href="{{ .RelPermalink }}" rel="alternate" type="application/json" title="{{ $.Site.Title }}" />
 {{ end }}
 
