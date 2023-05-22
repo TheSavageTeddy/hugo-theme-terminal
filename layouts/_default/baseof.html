@@ -2,7 +2,12 @@
 <html lang="{{ $.Site.Language }}">
 <head>
   {{ block "title" . }}
-    <title>{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }} :: {{ $.Site.Title }}{{ end }}</title>
+  
+  {{$post_title := .Title}}
+  {{$post_title := split $post_title "}}" }}
+  {{$post_title := index $post_title (sub (len $post_title) 1)}}
+
+    <title>{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ $post_title }} :: {{ $.Site.Title }}{{ end }}</title>
   {{ end }}
   {{ partial "head.html" . }}
 </head>
